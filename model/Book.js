@@ -27,6 +27,18 @@ const bookSchema = new Schema({
     type: String,
     require: true,
   },
+  today: {
+    type: Date,
+    require: true,
+  },
+  emotion: {
+    type: Number,
+    require: true,
+  },
+  contents: {
+    type: String,
+    require: true,
+  },
 });
 
 module.exports = mongoose.model("Book", bookSchema);
