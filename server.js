@@ -20,7 +20,7 @@ const corsOptions = {
 //* Middlewares
 app.use(express.json());
 //app.use(cors());
-app.use(cors(corsOptions)); //* 옵션을 추가한 CORS 미들웨어 추가
+app.use(cors({ origin: "http://localhost:5173" }));
 app.use("/books", router);
 
 //* DB Connect
