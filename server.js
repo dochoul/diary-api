@@ -20,12 +20,7 @@ const corsOptions = {
 //* Middlewares
 app.use(express.json());
 //app.use(cors());
-//app.use(cors(corsOptions)); //* 옵션을 추가한 CORS 미들웨어 추가
-app.use(
-  cors({
-    origin: "*", //* 모든 출처 허용 옵션. true 를 써도 된다.
-  })
-);
+app.use(cors(corsOptions)); //* 옵션을 추가한 CORS 미들웨어 추가
 app.use("/books", router);
 
 //* DB Connect
