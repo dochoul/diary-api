@@ -5,16 +5,9 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const router = require("./routes/book-routes");
 
-const whitelist = ["http://localhost:5173"];
-const corsOptions = {
-  origin: "https://tasteless-bianka-david-kim.koyeb.app",
-  credentials: true,
-};
-
 //* Middlewares
 app.use(express.json());
-//app.use(cors());
-app.use(cors(corsOptions));
+app.use(cors());
 app.use("/books", router);
 
 //* DB Connect
