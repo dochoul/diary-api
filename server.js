@@ -5,9 +5,22 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const router = require("./routes/book-routes");
 
+const whitelist = ["http://localhost:5173", "http://localhost:3000"];
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (whitelist.indexOf(origin) !== -1) {
+      // 만일 whitelist 배열에 origin인자가 있을 경우
+      callback(null, true); // cors 허용
+    } else {
+      callback(new Error("Not Allowed Origin!")); // cors 비허용
+    }
+  },
+};
+
 //* Middlewares
 app.use(express.json());
-app.use(cors());
+//app.use(cors());
+app.use(cors(corsOptions)); //* 옵션을 추가한 CORS 미들웨어 추가
 app.use("/books", router);
 
 //* DB Connect
