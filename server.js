@@ -7,14 +7,8 @@ const router = require("./routes/book-routes");
 
 const whitelist = ["http://localhost:5173"];
 const corsOptions = {
-  origin: function (origin, callback) {
-    if (whitelist.indexOf(origin) !== -1) {
-      // 만일 whitelist 배열에 origin인자가 있을 경우
-      callback(null, true); // cors 허용
-    } else {
-      callback(new Error("Not Allowed Origin!")); // cors 비허용
-    }
-  },
+  origin: "https://tasteless-bianka-david-kim.koyeb.app",
+  credentials: true,
 };
 
 //* Middlewares
