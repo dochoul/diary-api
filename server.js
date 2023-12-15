@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const router = require("./routes/book-routes");
 
-const whitelist = ["http://localhost:5173", "http://localhost:3000"];
+const whitelist = ["http://localhost:5173"];
 const corsOptions = {
   origin: function (origin, callback) {
     if (whitelist.indexOf(origin) !== -1) {
@@ -20,7 +20,7 @@ const corsOptions = {
 //* Middlewares
 app.use(express.json());
 //app.use(cors());
-app.use(cors({ origin: "http://localhost:5173" }));
+app.use(cors(corsOptions));
 app.use("/books", router);
 
 //* DB Connect
