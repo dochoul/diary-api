@@ -40,7 +40,7 @@ const addBook = async (req, res, next) => {
     date,
     today,
     emotion,
-    contents,
+    content,
   } = req.body;
   let book;
   try {
@@ -54,7 +54,7 @@ const addBook = async (req, res, next) => {
       date,
       today,
       emotion,
-      contents,
+      content,
     });
     await book.save();
   } catch (err) {
@@ -79,7 +79,7 @@ const updateBook = async (req, res, next) => {
     date,
     today,
     emotion,
-    contents,
+    content,
   } = req.body;
   let book;
   try {
@@ -93,7 +93,7 @@ const updateBook = async (req, res, next) => {
       date,
       today,
       emotion,
-      contents,
+      content,
     });
     book = await book.save();
   } catch (err) {

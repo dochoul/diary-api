@@ -39,10 +39,16 @@ const bookSchema = new Schema({
     type: Number,
     require: true,
   },
+  content: {
+    type: String,
+    require: true,
+  },
   contents: {
     type: String,
     require: true,
   },
 });
+
+bookSchema.set("timestamps", true);
 
 module.exports = mongoose.model("Book", bookSchema);
