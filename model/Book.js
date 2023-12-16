@@ -31,6 +31,10 @@ const bookSchema = new Schema({
     type: Date,
     require: true,
   },
+  date: {
+    type: Date,
+    require: true,
+  },
   emotion: {
     type: Number,
     require: true,
