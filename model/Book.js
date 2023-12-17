@@ -47,8 +47,14 @@ const bookSchema = new Schema({
     type: String,
     require: true,
   },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
+  updatedAt: {
+    type: Date,
+    default: Date.now,
+  },
 });
-
-bookSchema.set("timestamps", true);
 
 module.exports = mongoose.model("Book", bookSchema);
