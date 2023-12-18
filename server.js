@@ -29,24 +29,3 @@ app.get("/", (req, res) => {
 app.listen(PORT, () => {
   console.log(`server is running on${PORT}`);
 });
-
-//* User Schema
-// const userSchema = new mongoose.Schema({
-//   name: {
-//     type: String,
-//     require: true,
-//   },
-// });
-// const User = mongoose.model("User", userSchema);
-
-// app.post("/createuser", async (req, res) => {
-//   try {
-//     const bodyData = req.body;
-//     const user = new User(bodyData);
-//     const userData = await user.save();
-//     res.send(userData);
-//     console.log("ok?");
-//   } catch (error) {
-//     res.send(error);
-//   }
-// });
