@@ -23,7 +23,7 @@ const getGoodEmotion = async (req, res, next) => {
   }
 
   if (!books) {
-    return res.status(404).json({ message: "No Product found" });
+    return res.status(404).json({ message: "No Good Emotion found" });
   }
   return res.status(200).json({ books });
 };
