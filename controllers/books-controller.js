@@ -14,6 +14,20 @@ const getAllBooks = async (req, res, next) => {
   return res.status(200).json({ books });
 };
 
+const getGoodEmotion = async (req, res, next) => {
+  let books;
+  try {
+    books = await Book.find({ emotion: { $gte: 3 } });
+  } catch (err) {
+    console.log(err);
+  }
+
+  if (!books) {
+    return res.status(404).json({ message: "No Product found" });
+  }
+  return res.status(200).json({ books });
+};
+
 const getById = async (req, res, next) => {
   const id = req.params.id;
   let book;
@@ -122,6 +136,7 @@ const deleteBook = async (req, res, next) => {
 };
 
 exports.getAllBooks = getAllBooks;
+exports.getGoodEmotion = getGoodEmotion;
 exports.getById = getById;
 exports.addBook = addBook;
 exports.updateBook = updateBook;
