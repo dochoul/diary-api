@@ -2,10 +2,25 @@ const Book = require("../model/Book");
 
 const getAllBooks = async (req, res, next) => {
   let books;
-  try {
-    books = await Book.find();
-  } catch (err) {
-    console.log(err);
+  const sort = req.query.sort;
+  const emotion = req.query.emotion;
+
+  if (sort === "latest") {
+    if (emotion === "all") {
+      books = await Book.find().sort({ date: -1 }).where("emotion").gt(0);
+    } else if (emotion === "good") {
+      books = await Book.find().sort({ date: -1 }).where("emotion").lt(3);
+    } else {
+      books = await Book.find().sort({ date: -1 }).where("emotion").gt(3);
+    }
+  } else {
+    if (emotion === "all") {
+      books = await Book.find().sort({ date: 1 }).where("emotion").gt(0);
+    } else if (emotion === "good") {
+      books = await Book.find().sort({ date: 1 }).where("emotion").lt(3);
+    } else {
+      books = await Book.find().sort({ date: 1 }).where("emotion").gt(3);
+    }
   }
 
   if (!books) {

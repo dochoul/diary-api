@@ -4,16 +4,16 @@ const Schema = mongoose.Schema;
 
 const bookSchema = new Schema(
   {
+    date: {
+      type: Date,
+      require: true,
+    },
     emotion: {
       type: Number,
       require: true,
     },
     content: {
       type: String,
-      require: true,
-    },
-    date: {
-      type: Date,
       require: true,
     },
   },
