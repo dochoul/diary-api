@@ -7,19 +7,19 @@ const getAllBooks = async (req, res, next) => {
 
   if (sort === "latest") {
     if (emotion === "all") {
-      books = await Book.find().sort({ date: -1 }).where("emotion").gt(0);
+      books = await Book.find().sort({ updatedAt: -1 }).where("emotion").gt(0);
     } else if (emotion === "good") {
-      books = await Book.find().sort({ date: -1 }).where("emotion").lt(3);
+      books = await Book.find().sort({ updatedAt: -1 }).where("emotion").lt(3);
     } else {
-      books = await Book.find().sort({ date: -1 }).where("emotion").gt(3);
+      books = await Book.find().sort({ updatedAt: -1 }).where("emotion").gt(3);
     }
   } else {
     if (emotion === "all") {
-      books = await Book.find().sort({ date: 1 }).where("emotion").gt(0);
+      books = await Book.find().sort({ updatedAt: 1 }).where("emotion").gt(0);
     } else if (emotion === "good") {
-      books = await Book.find().sort({ date: 1 }).where("emotion").lt(3);
+      books = await Book.find().sort({ updatedAt: 1 }).where("emotion").lt(3);
     } else {
-      books = await Book.find().sort({ date: 1 }).where("emotion").gt(3);
+      books = await Book.find().sort({ updatedAt: 1 }).where("emotion").gt(3);
     }
   }
 
