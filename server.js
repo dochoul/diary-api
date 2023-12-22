@@ -3,13 +3,44 @@ const app = express();
 const PORT = 9000;
 const mongoose = require("mongoose");
 const cors = require("cors");
-
 const router = require("./routes/book-routes");
 
 //* Middlewares
 app.use(express.json());
-app.use(cors({ origin: "https://my-emotion-diary.netlify.app/" }));
+//app.use(cors());
+app.use(
+  cors({
+    origin: "*",
+  })
+);
 app.use("/books", router);
+
+var whitelist = [
+  "https://my-emotion-diary.netlify.app/",
+  "http://localhost:9000",
+]; //white list consumers
+var corsOptions = {
+  origin: function (origin, callback) {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(null, false);
+    }
+  },
+  methods: ["GET", "PUT", "POST", "DELETE", "OPTIONS"],
+  optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+  credentials: true, //Credentials are cookies, authorization headers or TLS client certificates.
+  allowedHeaders: [
+    "Content-Type",
+    "Authorization",
+    "X-Requested-With",
+    "device-remember-token",
+    "Access-Control-Allow-Origin",
+    "Origin",
+    "Accept",
+  ],
+};
+app.use(cors(corsOptions)); //adding cors middleware to the express with above configurations
 
 //* DB Connect
 mongoose
