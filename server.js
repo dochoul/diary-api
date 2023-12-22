@@ -8,7 +8,7 @@ const router = require("./routes/book-routes");
 
 //* Middlewares
 app.use(express.json());
-app.use(cors());
+app.use(cors({ origin: "https://my-emotion-diary.netlify.app/" }));
 app.use("/books", router);
 
 //* DB Connect
