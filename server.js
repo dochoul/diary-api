@@ -7,10 +7,7 @@ const router = require("./routes/book-routes");
 
 //* Middlewares
 app.use(express.json());
-let corsOptions = {
-  origin: "*",
-};
-app.use(cors(corsOptions));
+app.use(cors());
 app.use("/books", router);
 
 //* DB Connect
@@ -26,6 +23,7 @@ mongoose
   });
 
 app.get("/", (req, res) => {
+  res.header("Access-Control-Allow-Origin", "*");
   res.send("from get route");
 });
 
