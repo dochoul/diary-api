@@ -4,22 +4,56 @@ const getAllBooks = async (req, res, next) => {
   let books;
   const sort = req.query.sort;
   const emotion = req.query.emotion;
+  const year = req.query.year;
+  const month = req.query.month;
+
+  var lastday = new Date(year, month, 0).getDate();
+  const find_query = {
+    date: {
+      $gte: `${year}-${month}-01`,
+      $lt: `${year}-${month}-${lastday}`,
+    },
+  };
 
   if (sort === "latest") {
     if (emotion === "all") {
-      books = await Book.find().sort({ updatedAt: -1 }).where("emotion").gt(0);
+      books = await Book.find(find_query)
+        .sort({ date: -1 })
+        .sort({ createdAt: -1 })
+        .where("emotion")
+        .gt(0);
     } else if (emotion === "good") {
-      books = await Book.find().sort({ updatedAt: -1 }).where("emotion").lt(3);
+      books = await Book.find(find_query)
+        .sort({ date: -1 })
+        .sort({ createdAt: -1 })
+        .where("emotion")
+        .lt(3);
     } else {
-      books = await Book.find().sort({ updatedAt: -1 }).where("emotion").gt(3);
+      books = await Book.find(find_query)
+        .sort({ date: -1 })
+        .sort({ createdAt: -1 })
+        .where("emotion")
+        .gte(3);
     }
   } else {
     if (emotion === "all") {
-      books = await Book.find().sort({ updatedAt: 1 }).where("emotion").gt(0);
+      books = await Book.find(find_query)
+        .sort({ date: 1 })
+        .sort({ createdAt: 1 })
+        .where("emotion")
+        .gt(0);
     } else if (emotion === "good") {
-      books = await Book.find().sort({ updatedAt: 1 }).where("emotion").lt(3);
+      books = await Book.find(find_query)
+        .sort({ date: 1 })
+        .sort({ createdAt: 1 })
+        .where("emotion")
+        .lt(3);
     } else {
-      books = await Book.find().sort({ updatedAt: 1 }).where("emotion").gt(3);
+      books = await Book.find(find_query)
+        .sort({ date: 1 })
+        .sort({ createdAt: 1 })
+        .where("emotion")
+        .gte(3);
     }
   }
 

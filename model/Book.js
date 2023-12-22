@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const moment = require("moment-timezone");
 
 const Schema = mongoose.Schema;
 
@@ -15,6 +16,22 @@ const bookSchema = new Schema(
     content: {
       type: String,
       require: true,
+    },
+    createdAt: {
+      type: String,
+      default: function () {
+        return moment
+          .tz(new Date(), "Asia/Seoul")
+          .format("YYYY-MM-DD HH:mm:ss");
+      },
+    },
+    updatedAt: {
+      type: String,
+      default: function () {
+        return moment
+          .tz(new Date(), "Asia/Seoul")
+          .format("YYYY-MM-DD HH:mm:ss");
+      },
     },
   },
   { timestamps: true }
