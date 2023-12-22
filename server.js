@@ -10,7 +10,7 @@ app.use(express.json());
 //app.use(cors());
 app.use(
   cors({
-    origin: "https://tasteless-bianka-david-kim.koyeb.app/",
+    origin: "https://my-emotion-diary.netlify.app/",
   })
 );
 app.use("/books", router);
