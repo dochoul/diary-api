@@ -23,7 +23,7 @@ mongoose
   });
 
 app.get("/", (req, res) => {
-  res.header("Access-Control-Allow-Origin", "*");
+  //res.header("Access-Control-Allow-Origin", "*");
   res.send("from get route");
 });
 
