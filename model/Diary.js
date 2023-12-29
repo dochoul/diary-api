@@ -7,7 +7,6 @@ const bookSchema = new Schema(
   {
     date: {
       type: Date,
-      default: Date.now(),
       require: true,
     },
     emotion: {

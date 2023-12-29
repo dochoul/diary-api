@@ -5,12 +5,12 @@ const app = express();
 const PORT = 9000;
 const mongoose = require("mongoose");
 const cors = require("cors");
-const router = require("./routes/book-routes");
+const router = require("./routes/diary-routes");
 
 //* Middlewares
 app.use(express.json());
 app.use(cors());
-app.use("/books", router);
+app.use("/api/diary", router);
 
 //* DB Connect
 mongoose
@@ -23,7 +23,6 @@ mongoose
   });
 
 app.get("/", (req, res) => {
-  //res.header("Access-Control-Allow-Origin", "*");
   res.send("from get route");
 });
 
