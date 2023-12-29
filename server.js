@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const express = require("express");
 const app = express();
 const PORT = 9000;
@@ -12,9 +14,7 @@ app.use("/books", router);
 
 //* DB Connect
 mongoose
-  .connect(
-    "mongodb+srv://admin:1234@cluster0.4ffeuqe.mongodb.net/bookStore?retryWrites=true&w=majority"
-  )
+  .connect(process.env.MONGODB_URI)
   .then(() => {
     console.log("DB Connection Successfully");
   })
