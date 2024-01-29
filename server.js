@@ -1,20 +1,20 @@
+require('dotenv').config();
+
 const express = require("express");
 const app = express();
 const PORT = 9000;
 const mongoose = require("mongoose");
 const cors = require("cors");
-const router = require("./routes/book-routes");
+const router = require("./routes/diary-routes");
 
 //* Middlewares *//
 app.use(express.json());
 app.use(cors());
-app.use("/books", router);
+app.use("/api/diary", router);
 
 //* DB Connect *//
 mongoose
-  .connect(
-    "mongodb+srv://admin:1234@cluster0.4ffeuqe.mongodb.net/bookStore?retryWrites=true&w=majority"
-  )
+  .connect(process.env.MONGODB_URI)
   .then(() => {
     console.log("DB Connection Successfully");
   })
@@ -23,7 +23,6 @@ mongoose
   });
 
 app.get("/", (req, res) => {
-  //res.header("Access-Control-Allow-Origin", "*");
   res.send("from get route");
 });
 

@@ -1,4 +1,4 @@
-const Book = require("../model/Book");
+const Book = require("../model/Diary");
 
 const getAllBooks = async (req, res, next) => {
   let books;
@@ -35,7 +35,7 @@ const getAllBooks = async (req, res, next) => {
         .where("emotion")
         .gte(3);
     }
-  } else {
+  } else if(sort === "oldest"){
     if (emotion === "all") {
       books = await Book.find(find_query)
         .sort({ date: 1 })
@@ -55,6 +55,8 @@ const getAllBooks = async (req, res, next) => {
         .where("emotion")
         .gte(3);
     }
+  }else{
+    books = await Book.find()
   }
 
   if (!books) {
