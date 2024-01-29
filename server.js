@@ -5,12 +5,12 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const router = require("./routes/book-routes");
 
-//* Middlewares
+//* Middlewares *//
 app.use(express.json());
 app.use(cors());
 app.use("/books", router);
 
-//* DB Connect
+//* DB Connect *//
 mongoose
   .connect(
     "mongodb+srv://admin:1234@cluster0.4ffeuqe.mongodb.net/bookStore?retryWrites=true&w=majority"
